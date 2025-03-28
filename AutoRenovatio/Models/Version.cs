@@ -2,8 +2,18 @@
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
-namespace AutoRenovatio;
+namespace AutoRenovatioNS.Models;
 
+/// <summary>
+/// <see cref="Version"/> is an example on how you can make a versioning class,
+/// it's used by the default <b>UpdateInfo</b> class, <see cref="DefaultUpdate"/>.
+/// But it can easily be replaced by a versioning class of your need.
+/// </summary>
+/// <summary xml:lang="es">
+/// <see cref="Version"/> es un ejemplo de como crear una clase de versionado,
+/// es utilizada para la clase default de <b>UpdateInfo</b>, <see cref="DefaultUpdate"/>.
+/// Pero se podria facilmente crear una clase de versionado para tus necesidades.
+/// </summary>
 public class Version : IXmlSerializable
 {
     public int Major { get; set; }
@@ -36,24 +46,24 @@ public class Version : IXmlSerializable
         Parse(ver, deilimiter);
     }
 
-    private void Parse(string ver, char deilimiter = '.')
+    public override String ToString()
+    {
+        return (Suffix != null) ? $"{Major}.{Minor}.{Build}.{Suffix}" : $"{Major}.{Minor}.{Build}";
+    }
+
+    protected void Parse(string ver, char deilimiter = '.')
     {
         var parts = ver.Split(deilimiter);
 
         if (parts.Length > 4)
         {
-            throw new ArgumentOutOfRangeException(ver, "Cadena de versionado supera los 4 parametros requeridos por la clase; Major.Minor.Build.Suffix");
+            throw new ArgumentOutOfRangeException(ver, "String exceeds the 4 parameters required by the class: Major.Minor.Build.Suffix");
         }
 
         Major = int.Parse(parts.ElementAtOrDefault(0) ?? "0");
         Minor = int.Parse(parts.ElementAtOrDefault(1) ?? "0");
         Build = int.Parse(parts.ElementAtOrDefault(2) ?? "0");
         Suffix = parts.ElementAtOrDefault(3);
-    }
-
-    public override String ToString()
-    {
-        return (Suffix != null) ? $"{Major}.{Minor}.{Build}.{Suffix}" : $"{Major}.{Minor}.{Build}";
     }
 
     public XmlSchema? GetSchema()
@@ -68,7 +78,7 @@ public class Version : IXmlSerializable
         if (!reader.IsEmptyElement)
         {
             var content = reader.ReadContentAsString();
-            Parse(content);
+            this.Parse(content);
             reader.ReadEndElement();
         }
     }

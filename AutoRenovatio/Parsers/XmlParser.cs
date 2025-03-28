@@ -1,9 +1,10 @@
-﻿using System.Xml.Serialization;
+﻿using AutoRenovatioNS.Interfaces;
+using System.Xml.Serialization;
 
-namespace AutoRenovatio;
+namespace AutoRenovatioNS.Parsers;
 
 public class XmlParser<T> : IParser<T>
-     where T : class, IUpdate, new()
+     where T : class, IUpdateInfo, new()
 {
     public T? Parse(string content)
     {
