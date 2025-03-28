@@ -5,12 +5,22 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<RootNamespace>AutoRenovatioNS</RootNamespace>
-	<Title>AutoRenovatio</Title>
+	<Title>Auto Renovatio</Title>
 	<Description> Simple and customizable system of automatics updates for C# </Description>
 	<PackageProjectUrl>https://github.com/sad-ko/AutoRenovatio</PackageProjectUrl>
 	<RepositoryUrl>https://github.com/sad-ko/AutoRenovatio</RepositoryUrl>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	<Authors>suga</Authors>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
+	<PackageTags>autoupdate;updater;c#;wpf</PackageTags>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="YamlDotNet" Version="16.3.0" />
