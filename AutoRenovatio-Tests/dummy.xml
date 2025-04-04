@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <UpdateInfo>
-	<Version>3.2.1.beta</Version>
+	<Version>3.2.1-beta</Version>
 	<Url>https://github.com/runfo-sa/canelary</Url>
 	<Changelog>Tested by XML parser</Changelog>
 	<Mandatory>false</Mandatory>

@@ -13,6 +13,7 @@
 	<Authors>suga</Authors>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<PackageTags>autoupdate;updater;c#;wpf</PackageTags>
+	<Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

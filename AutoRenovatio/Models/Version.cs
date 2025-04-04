@@ -48,22 +48,24 @@ public class Version : IXmlSerializable
 
     public override String ToString()
     {
-        return (Suffix != null) ? $"{Major}.{Minor}.{Build}.{Suffix}" : $"{Major}.{Minor}.{Build}";
+        return (Suffix != null) ? $"{Major}.{Minor}.{Build}-{Suffix}" : $"{Major}.{Minor}.{Build}";
     }
 
     protected void Parse(string ver, char deilimiter = '.')
     {
         var parts = ver.Split(deilimiter);
 
-        if (parts.Length > 4)
+        if (parts.Length > 3)
         {
-            throw new ArgumentOutOfRangeException(ver, "String exceeds the 4 parameters required by the class: Major.Minor.Build.Suffix");
+            throw new ArgumentOutOfRangeException(ver, "String exceeds the 3 parameters required by the class: Major.Minor.Build");
         }
+
+        var build_suffix = (parts.ElementAtOrDefault(2) ?? "0").Split('-');
 
         Major = int.Parse(parts.ElementAtOrDefault(0) ?? "0");
         Minor = int.Parse(parts.ElementAtOrDefault(1) ?? "0");
-        Build = int.Parse(parts.ElementAtOrDefault(2) ?? "0");
-        Suffix = parts.ElementAtOrDefault(3);
+        Build = int.Parse(build_suffix[0]);
+        Suffix = build_suffix.ElementAtOrDefault(1);
     }
 
     public XmlSchema? GetSchema()

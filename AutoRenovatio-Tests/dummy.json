@@ -1,5 +1,5 @@
 ﻿{
-  "Version": "3.2.1.beta",
+  "Version": "3.2.1-beta",
   "Url": "https://github.com/runfo-sa/canelary",
   "Changelog": "Tested by JSON parser",
   "Mandatory": true
